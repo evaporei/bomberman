@@ -1,0 +1,25 @@
+{
+  "name": "bomberman",
+  "version": "1.0.0",
+  "description": "slack bot that gets images on the web and post them",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/otaviopace/bomberman.git"
+  },
+  "keywords": [
+    "bomb",
+    "images",
+    "slack",
+    "bot"
+  ],
+  "author": "Otávio Pace",
+  "license": "WTFPL",
+  "bugs": {
+    "url": "https://github.com/otaviopace/bomberman/issues"
+  },
+  "homepage": "https://github.com/otaviopace/bomberman#readme"
+}
