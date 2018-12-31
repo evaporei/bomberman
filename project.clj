@@ -1,4 +1,4 @@
-(defproject bomberman "0.1.0-SNAPSHOT"
+(defproject bomberman "1.0.0"
   :author "Otávio Pace"
   :description "slack bot that gets images on the web and post them"
   :url "https://github.com/otaviopace/bomberman"
