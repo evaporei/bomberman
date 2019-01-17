@@ -40,7 +40,7 @@
   @(http/request {
                   :url slack-url
                   :method :post
-                  :body (json/write-str {:text message})
+                  :body (json/write-str {:text message :parse "full"})
                   }))
 
 (defn build-welcome-message [race user-name quantity]
