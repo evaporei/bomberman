@@ -2,6 +2,15 @@
   (:require [clojure.test :refer :all]
             [bomberman.core :refer :all]))
 
-(deftest a-test
-  (testing "FIXME, I fail."
-    (is (= 0 1))))
+(deftest test-parse-req
+  (testing "parse-req"
+    (is (=
+         (parse-req {
+                     :text "bulldog 5"
+                     :user_name "otaviopace"
+                     })
+         {
+          :race "bulldog"
+          :quantity "5"
+          :user-name "otaviopace"
+          }))))

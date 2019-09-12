@@ -31,9 +31,9 @@
 
 (defn parse-req [req]
   {
-    :race (get (str/split (get-in req [:text]) #" ") 0)
-    :quantity (get (str/split (get-in req [:text]) #" ") 1)
-    :user-name (get-in req [:user_name])
+    :race (first (str/split (:text req) #" "))
+    :quantity (second (str/split (:text req) #" "))
+    :user-name (:user_name req)
     })
 
 (defn post-slack-message [message]
