@@ -14,3 +14,9 @@
           :quantity "5"
           :user-name "otaviopace"
           }))))
+
+(deftest test-build-welcome-message
+  (testing "build-welcome-message"
+    (is (=
+         (build-welcome-message "bulldog" "otaviopace" "5")
+         "bulldog bomb for @otaviopace x5"))))
