@@ -20,3 +20,9 @@
     (is (=
          (build-welcome-message "bulldog" "otaviopace" "5")
          "bulldog bomb for @otaviopace x5"))))
+
+(deftest test-create-dogs-url
+  (testing "create-dogs-url"
+    (is (=
+         (create-dogs-url "bulldog")
+         "https://dog.ceo/api/breed/bulldog/images/random"))))

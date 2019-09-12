@@ -46,8 +46,11 @@
 (defn build-welcome-message [race user-name quantity]
   (str race " bomb for @" user-name " x" quantity))
 
+(defn create-dogs-url [race]
+  (str/replace dogs-url #"race" race))
+
 (defn fetch-image [race]
-  (get-in (json/read-str (get-in @(http/get (str/replace dogs-url #"race" race) {:client sni-client}) [:body])) ["message"]))
+  (get-in (json/read-str (:body @(http/get (create-dogs-url race) {:client sni-client}))) ["message"]))
 
 (defn request-handler [req]
   (let
