@@ -30,18 +30,14 @@
 (def dogs-url "https://dog.ceo/api/breed/race/images/random")
 
 (defn parse-req [req]
-  {
-    :race (first (str/split (:text req) #" "))
-    :quantity (second (str/split (:text req) #" "))
-    :user-name (:user_name req)
-    })
+  {:race (first (str/split (:text req) #" "))
+   :quantity (second (str/split (:text req) #" "))
+   :user-name (:user_name req)})
 
 (defn post-slack-message [message]
-  @(http/request {
-                  :url slack-url
+  @(http/request {:url slack-url
                   :method :post
-                  :body (json/write-str {:text message :parse "full"})
-                  }))
+                  :body (json/write-str {:text message :parse "full"})}))
 
 (defn build-welcome-message [race user-name quantity]
   (str race " bomb for @" user-name " x" quantity))
@@ -55,11 +51,9 @@
 (defn request-handler [req]
   (let
     [req-map (keywordize-keys (form-decode (slurp (.bytes (:body req)) :encoding "UTF-8")))]
-    (let [{
-           race :race
+    (let [{race :race
            quantity :quantity
-           user-name :user-name
-           } (parse-req req-map)]
+           user-name :user-name} (parse-req req-map)]
       (post-slack-message (build-welcome-message race user-name quantity))
       (dotimes [_ (Integer/parseInt quantity)]
         (post-slack-message (fetch-image race)))))

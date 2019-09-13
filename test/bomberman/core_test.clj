@@ -5,15 +5,11 @@
 (deftest test-parse-req
   (testing "parse-req"
     (is (=
-         (parse-req {
-                     :text "bulldog 5"
-                     :user_name "otaviopace"
-                     })
-         {
-          :race "bulldog"
+         (parse-req {:text "bulldog 5"
+                     :user_name "otaviopace"})
+         {:race "bulldog"
           :quantity "5"
-          :user-name "otaviopace"
-          }))))
+          :user-name "otaviopace"}))))
 
 (deftest test-build-welcome-message
   (testing "build-welcome-message"
