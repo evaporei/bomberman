@@ -22,3 +22,9 @@
     (is (=
          (create-dogs-url "bulldog")
          "https://dog.ceo/api/breed/bulldog/images/random"))))
+
+(deftest test-fetch-dog-image-url
+  (testing "fetch-dog-image-url"
+    (is (=
+         (subs (fetch-dog-image-url "bulldog") 0 37)
+         "https://images.dog.ceo/breeds/bulldog"))))

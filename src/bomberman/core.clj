@@ -45,8 +45,15 @@
 (defn create-dogs-url [race]
   (str/replace dogs-url #"race" race))
 
-(defn fetch-image [race]
-  (get-in (json/read-str (:body @(http/get (create-dogs-url race) {:client sni-client}))) ["message"]))
+(defn fetch-dog-image-url [race]
+  (->
+    race
+    create-dogs-url
+    (http/get {:client sni-client})
+    deref
+    :body
+    json/read-str
+    (get-in ["message"])))
 
 (defn request-handler [req]
   (let
@@ -56,7 +63,7 @@
            user-name :user-name} (parse-req req-map)]
       (post-slack-message (build-welcome-message race user-name quantity))
       (dotimes [_ (Integer/parseInt quantity)]
-        (post-slack-message (fetch-image race)))))
+        (post-slack-message (fetch-dog-image-url race)))))
   req)
 
 (defroutes app
