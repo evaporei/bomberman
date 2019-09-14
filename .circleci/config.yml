@@ -1,0 +1,18 @@
+version: 2
+
+jobs:
+  test:
+    docker:
+      - image: clojure:openjdk-8-lein-alpine 
+    steps:
+      - checkout
+      - run:
+          name: Run tests via Lein
+          command: lein test
+
+
+workflows:
+  version: 2
+  run_tests:
+    jobs:
+      - test
