@@ -6,6 +6,19 @@
 
 See the tutorial [here](INSTALLATION.md).
 
+## How to use it on your workspace
+
+Just send a `/bomberman [breed/race] [quantity]` Slash command message on to the channel you've configured `bomberman`, to receive the cute animals pictures :wink: 
+
+Some examples:
+
+```
+/bomberman pug 2
+/bomberman shiba 5
+```
+
+For now this project only works for `dogs`, and the list of the accepted breeds is [here](https://dog.ceo/dog-api/breeds-list).
+
 ## Usage
 
 1. Clone repo
