@@ -38,7 +38,7 @@ Then copy the new webhook URL made, we will use it later.
 
 Before setting the Slack's Slash Command, you will need to host `bomberman` somewhere, like AWS, Digital Ocean, Google Cloud, Heroku, now.sh, etc.
 
-I recommend running the project using `Docker`, it will run a HTTP server on port 8080.
+I recommend running the project using `Docker`, it will run a HTTP server on port 8080. To understand better how to run this project and how it works, look [here](https://github.com/otaviopace/bomberman#running-the-project) and [here](https://github.com/otaviopace/bomberman#technology-and-inner-workings).
 
 ### Slash Commands
 
