@@ -8,6 +8,7 @@
             [clojure.string :as str]
             [dotenv :refer [env app-env]]
             [ring.middleware.json :refer [wrap-json-response wrap-json-body]]
+            [ring.middleware.params :refer [wrap-params]]
             [ring.util.response :refer [response]])
   (:import
     [java.net URI]
@@ -29,11 +30,11 @@
 (def slack-url (env "SLACK_URL"))
 (def dogs-url "https://dog.ceo/api/breed/race/images/random")
 
-(defn parse-req [req]
-  (let [split-text (str/split (:text req) #" ")]
+(defn parse-body [req]
+  (let [split-text (str/split (get req "text") #" ")]
     {:race (first split-text)
      :quantity (second split-text)
-     :user-name (:user_name req)}))
+     :user-name (get req "user_name")}))
 
 (defn post-slack-message [message]
   @(http/request {:url slack-url
@@ -57,19 +58,17 @@
     (get-in ["message"])))
 
 (defn request-handler [req]
-  (let
-    [req-map (keywordize-keys (form-decode (slurp (.bytes (:body req)) :encoding "UTF-8")))]
-    (let [{race :race
-           quantity :quantity
-           user-name :user-name} (parse-req req-map)]
-      (post-slack-message (build-welcome-message race user-name quantity))
-      (dotimes [_ (Integer/parseInt quantity)]
-        (post-slack-message (fetch-dog-image-url race))))
-    {:status 200 :body ""}))
+  (let [{race :race
+         quantity :quantity
+         user-name :user-name} (parse-body (:form-params req))]
+    (post-slack-message (build-welcome-message race user-name quantity))
+    (dotimes [_ (Integer/parseInt quantity)]
+      (post-slack-message (fetch-dog-image-url race))))
+  {:status 200 :body ""})
 
 (defroutes app
   (POST "/" req (request-handler req)))
 
 (defn -main [& args]
-  (run-server (-> app wrap-json-body wrap-json-response) {:port 8080})
+  (run-server (-> app wrap-params wrap-json-body wrap-json-response) {:port 8080})
   (println "Server started on port 8080"))
