@@ -2,6 +2,10 @@
 
 > :bomb: A slack bot that gets images and post them
 
+## How to install bomberman into your Slack workspace
+
+See the tutorial [here](INSTALLATION.md).
+
 ## Usage
 
 1. Clone repo
