@@ -64,7 +64,7 @@
     (post-slack-message (build-welcome-message race user-name quantity))
     (dotimes [_ (Integer/parseInt quantity)]
       (post-slack-message (fetch-dog-image-url race))))
-  {:status 200 :body ""})
+  {:status 200})
 
 (defroutes app
   (POST "/" req (request-handler req)))
