@@ -11,5 +11,6 @@
                  [clj-fuzzy "0.4.1"]
                  [org.clojure/data.json "0.2.6"]
                  [ring/ring-json "0.4.0"]
-                 [lynxeyes/dotenv "1.0.2"]]
+                 [lynxeyes/dotenv "1.0.2"]
+                 [org.clojure/core.async "0.4.500"]]
   :main bomberman.core)

@@ -7,7 +7,8 @@
             [clojure.data.json :as json]
             [clojure.string :as str]
             [dotenv :refer [env]]
-            [ring.middleware.params :refer [wrap-params]])
+            [ring.middleware.params :refer [wrap-params]]
+            [clojure.core.async :as async :refer [>! chan go]])
   (:import
     [java.net URI]
     [javax.net.ssl
@@ -60,8 +61,8 @@
          quantity :quantity
          user-name :user-name} (parse-body (:form-params req))]
     (post-slack-message (build-welcome-message race user-name quantity))
-    (dotimes [_ (Integer/parseInt quantity)]
-      (post-slack-message (fetch-dog-image-url race))))
+    (doseq [_ (range (Integer/parseInt quantity))]
+      (go (>! (chan) (post-slack-message (fetch-dog-image-url race))))))
   {:status 200})
 
 (defroutes app
