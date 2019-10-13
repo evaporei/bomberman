@@ -8,7 +8,7 @@
          (parse-body {"text" "bulldog 5"
                       "user_name" "otaviopace"})
          {:race "bulldog"
-          :quantity "5"
+          :quantity 5
           :user-name "otaviopace"}))))
 
 (deftest test-build-welcome-message

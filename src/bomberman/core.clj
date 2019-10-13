@@ -32,7 +32,7 @@
 (defn parse-body [req]
   (let [split-text (str/split (get req "text") #" ")]
     {:race (first split-text)
-     :quantity (second split-text)
+     :quantity (Integer/parseInt (second split-text))
      :user-name (get req "user_name")}))
 
 (defn post-slack-message [message]
@@ -61,7 +61,7 @@
          quantity :quantity
          user-name :user-name} (parse-body (:form-params req))]
     (post-slack-message (build-welcome-message race user-name quantity))
-    (doseq [_ (range (Integer/parseInt quantity))]
+    (doseq [_ (range quantity)]
       (go (>! (chan) (post-slack-message (fetch-dog-image-url race)))))
     {:status 200}))
 
