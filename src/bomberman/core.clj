@@ -6,10 +6,8 @@
             [compojure.core :refer :all]
             [clojure.data.json :as json]
             [clojure.string :as str]
-            [dotenv :refer [env app-env]]
-            [ring.middleware.json :refer [wrap-json-response wrap-json-body]]
-            [ring.middleware.params :refer [wrap-params]]
-            [ring.util.response :refer [response]])
+            [dotenv :refer [env]]
+            [ring.middleware.params :refer [wrap-params]])
   (:import
     [java.net URI]
     [javax.net.ssl
@@ -70,5 +68,5 @@
   (POST "/" req (request-handler req)))
 
 (defn -main [& args]
-  (run-server (-> app wrap-params wrap-json-body wrap-json-response) {:port 8080})
+  (run-server (-> app wrap-params) {:port 8080})
   (println "Server started on port 8080"))
