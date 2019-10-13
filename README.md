@@ -29,11 +29,11 @@ Some examples:
 
 For now this project only works for `dogs`, and the list of the accepted breeds is [here](https://dog.ceo/dog-api/breeds-list).
 
-## Development
+## Running the project
 
-To setup a local enviroment for development you will need either `leiningen` or `Docker`.
+Before everything, you will need to create a `.env` file containing a line with the Slack URL `bomberman` will use to actually send messages to a channel. On this repository there is a file called [.env.example](https://github.com/otaviopace/bomberman/blob/master/.env.example) to show how this file should be. To actually get the Slack URL look at [this part](https://github.com/otaviopace/bomberman/blob/master/INSTALLATION.md#incoming-webhooks) of the `INSTALLATION.md` tutorial.
 
-After cloning the repository and changing to its directory you can run it like this:
+To run the project you will need either `leiningen` or `Docker`.
 
 ### Leiningen
 
