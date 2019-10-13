@@ -29,17 +29,24 @@ Some examples:
 
 For now this project only works for `dogs`, and the list of the accepted breeds is [here](https://dog.ceo/dog-api/breeds-list).
 
-## Usage
+## Development
 
-1. Clone repo
-2. Change to the repo directory
+To setup a local enviroment for development you will need either `leiningen` or `Docker`.
 
-### Using lein
-3. lein run
+After cloning the repository and changing to its directory you can run it like this:
 
-### Using docker
-3. docker build -t bomberman .
-4. docker run -it --rm -p 8088:8080 bomberman
+### Leiningen
+
+```
+lein run
+```
+
+### Docker
+
+```
+docker build -t bomberman .
+docker run -it --rm -p 8080:8080 bomberman
+```
 
 ## License
 >You can check out the full license [here](https://github.com/otaviopace/bomberman/blob/master/LICENSE.md)
