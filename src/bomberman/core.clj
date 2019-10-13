@@ -62,8 +62,8 @@
          user-name :user-name} (parse-body (:form-params req))]
     (post-slack-message (build-welcome-message race user-name quantity))
     (doseq [_ (range (Integer/parseInt quantity))]
-      (go (>! (chan) (post-slack-message (fetch-dog-image-url race))))))
-  {:status 200})
+      (go (>! (chan) (post-slack-message (fetch-dog-image-url race)))))
+    {:status 200}))
 
 (defroutes app
   (POST "/" req (request-handler req)))
