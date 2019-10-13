@@ -30,9 +30,10 @@
 (def dogs-url "https://dog.ceo/api/breed/race/images/random")
 
 (defn parse-req [req]
-  {:race (first (str/split (:text req) #" "))
-   :quantity (second (str/split (:text req) #" "))
-   :user-name (:user_name req)})
+  (let [split-text (str/split (:text req) #" ")]
+    {:race (first split-text)
+     :quantity (second split-text)
+     :user-name (:user_name req)}))
 
 (defn post-slack-message [message]
   @(http/request {:url slack-url
