@@ -55,7 +55,7 @@
     deref
     :body
     json/read-str
-    (get-in ["message"])))
+    (get "message")))
 
 (defn request-handler [req]
   (let [{race :race
