@@ -2,6 +2,16 @@
 
 > :bomb: A slack bot that gets images and post them
 
+Sending a Slash Command like this:
+
+![bomberman-slack-slash-command](https://i.imgur.com/yY3YWeT.png)
+
+Results in this:
+
+![command-response](https://i.imgur.com/6CK6anb.png)
+
+This project is heavly inspired by `hubot`'s `pugme`, for more info look [here](https://github.com/hubot-scripts/hubot-pugme).
+
 ## How to install bomberman into your Slack workspace
 
 See the tutorial [here](INSTALLATION.md).
