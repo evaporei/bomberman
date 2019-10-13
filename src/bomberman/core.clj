@@ -63,8 +63,8 @@
            user-name :user-name} (parse-req req-map)]
       (post-slack-message (build-welcome-message race user-name quantity))
       (dotimes [_ (Integer/parseInt quantity)]
-        (post-slack-message (fetch-dog-image-url race)))))
-  req)
+        (post-slack-message (fetch-dog-image-url race))))
+    {:status 200 :body ""}))
 
 (defroutes app
   (POST "/" req (request-handler req)))
