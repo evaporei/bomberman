@@ -60,10 +60,12 @@
   (let [{race :race
          quantity :quantity
          user-name :user-name} (parse-body (:form-params req))]
-    (post-slack-message (build-welcome-message race user-name quantity))
-    (doseq [_ (range quantity)]
-      (go (>! (chan) (post-slack-message (fetch-dog-image-url race)))))
-    {:status 200}))
+    (if (> quantity 5)
+      {:status 200 :body (str "Quantity has the limit of 5, you're passing: " quantity)}
+      (do (post-slack-message (build-welcome-message race user-name quantity))
+          (doseq [_ (range quantity)]
+            (go (>! (chan) (post-slack-message (fetch-dog-image-url race)))))
+          {:status 200}))))
 
 (defroutes app
   (POST "/" req (request-handler req)))

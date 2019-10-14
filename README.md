@@ -39,6 +39,8 @@ There is only one possible route, which is `POST /`, it accepts `form-encoded`, 
 
 It reads from the request the Slack `username`, the animal `breed/race` and the `quantity` of images.
 
+If the `quantity` is greater than `5`, it will send a message warning that there is a limit.
+
 Get's the data on the https://dog.ceo API and sends the images to Slack.
 
 After everything, it just sends a `200` status code to Slack, so it knows nothing is wrong.
